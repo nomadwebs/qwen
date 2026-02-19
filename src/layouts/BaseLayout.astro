@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  pathname?: string;
+}
+
+const { title, description, pathname = '/' } = Astro.props;
+const canonicalUrl = new URL(pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl.toString()} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl.toString()} />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="/" aria-label="Ir al inicio">fransanchez.dev</a>
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="/about">Sobre mí</a>
+          <a href="/projects">Proyectos</a>
+          <a href="/blog">Blog</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer id="contact" class="container">
+      <h2>Contacto</h2>
+      <p>Email: <a href="mailto:fran@fransanchez.dev">fran@fransanchez.dev</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/fran-sanchez" target="_blank" rel="noreferrer">/in/fran-sanchez</a></p>
+      <p>GitHub: <a href="https://github.com/fransanchezdev" target="_blank" rel="noreferrer">@fransanchezdev</a></p>
+      <p>Ubicación: Barcelona</p>
+    </footer>
+  </body>
+</html>
