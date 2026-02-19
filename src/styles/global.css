@@ -1,0 +1,160 @@
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #eef2ff;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: #dbe3f0;
+  --accent: #1d4ed8;
+  --accent-dark: #1e3a8a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent-dark);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+p {
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.nav {
+  border-bottom: 1px solid var(--border);
+  background: #ffffffde;
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 4rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.cards-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem;
+}
+
+.featured {
+  background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+  border: 1px solid #c7d2fe;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.tag {
+  font-size: 0.8rem;
+  color: var(--accent-dark);
+  background: #dbeafe;
+  border-radius: 999px;
+  padding: 0.22rem 0.65rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 0.62rem 1rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.post-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+}

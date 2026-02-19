@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { getReadingTime, sortByDateDesc } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const allPosts = sortByDateDesc(await getCollection('blog'));
+const currentIndex = allPosts.findIndex((entry) => entry.id === post.id);
+const previousPost = allPosts[currentIndex + 1];
+const nextPost = allPosts[currentIndex - 1];
+const { Content } = await post.render();
+---
+
+<BaseLayout
+  title={`${post.data.title} | Blog`}
+  description={post.data.description}
+  pathname={`/blog/${post.data.slug}`}
+>
+  <article class="section container">
+    <h1>{post.data.title}</h1>
+    <p class="meta">{post.data.date} · {getReadingTime(post.body)} min lectura</p>
+    <div class="post-content">
+      <Content />
+    </div>
+    <div class="actions">
+      {previousPost && <a class="btn" href={`/blog/${previousPost.data.slug}`}>← {previousPost.data.title}</a>}
+      {nextPost && <a class="btn" href={`/blog/${nextPost.data.slug}`}>{nextPost.data.title} →</a>}
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    id: 'hourify360',
+    name: 'Hourify360',
+    summary: 'Producto SaaS para gestionar packs de horas, sesiones y clientes.',
+    detail:
+      'Nació al detectar el coste operativo que sufren consultores, coaches y pequeños estudios al gestionar bonos de horas manualmente. El producto prioriza claridad operativa, trazabilidad de consumo y una experiencia sin fricción para cliente final.',
+    tags: ['SaaS', 'Product', 'Booking'],
+    link: 'https://hourify360.com'
+  },
+  {
+    id: 'o2c-toolkit',
+    name: 'Order-to-Cash Diagnostic Toolkit',
+    summary: 'Kit de diagnóstico rápido para procesos O2C en SAP SD.',
+    detail:
+      'Metodología de evaluación por capas (maestro de datos, pricing, entregas, facturación e integración FI) para reducir retrabajo y acelerar mejoras de proceso en entornos con incidencias recurrentes.',
+    tags: ['SAP SD', 'O2C', 'Diagnostics'],
+    link: '#contact'
+  },
+  {
+    id: 'inventory-sync',
+    name: 'Inventory Sync Bridge',
+    summary: 'Integración de inventario y reporting de negocio.',
+    detail:
+      'Proyecto orientado a sincronizar movimientos de almacén con reporting financiero y operativo, mejorando la trazabilidad de punta a punta y facilitando decisiones basadas en datos consistentes.',
+    tags: ['SAP MM', 'Data', 'Integration'],
+    link: '#contact'
+  },
+  {
+    id: 'pricing-governance',
+    name: 'Pricing Governance Playbook',
+    summary: 'Marco de gobierno de pricing para evitar regresiones.',
+    detail:
+      'Conjunto de prácticas para controlar cambios de condiciones comerciales, reducir errores en producción y establecer validaciones previas al despliegue en escenarios multi-sociedad.',
+    tags: ['Pricing', 'Governance', 'S/4HANA'],
+    link: '#contact'
+  }
+];
+---
+
+<BaseLayout
+  title="Proyectos | Fran Sánchez"
+  description="Proyectos de consultoría SAP y producto digital, incluyendo Hourify360 como caso destacado."
+  pathname="/projects"
+>
+  <section class="section container">
+    <h1>Proyectos</h1>
+    <p>Trabajo en proyectos donde la robustez operativa y la calidad del dato son una ventaja competitiva real.</p>
+    <div class="grid">
+      {projects.map((project) => (
+        <article id={project.id} class="card">
+          <h2>{project.name}</h2>
+          <p><strong>{project.summary}</strong></p>
+          <p>{project.detail}</p>
+          <div class="tag-list">
+            {project.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          <p>
+            <a href={project.link} target={project.link.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+              Ver referencia
+            </a>
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

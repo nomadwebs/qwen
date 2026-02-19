@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../lib/blog';
+
+const posts = sortByDateDesc(await getCollection('blog')).slice(0, 3);
+
+const projects = [
+  {
+    name: 'Hourify360',
+    description: 'SaaS para gestionar packs de horas, reservas y clientes en negocios por sesiones.',
+    tags: ['SaaS', 'Product', 'Operations'],
+    link: '/projects#hourify360'
+  },
+  {
+    name: 'Order-to-Cash Diagnostic Toolkit',
+    description: 'Framework práctico para auditar cuellos de botella en O2C y reducir incidencias de facturación.',
+    tags: ['SAP SD', 'O2C', 'Quality'],
+    link: '/projects#o2c-toolkit'
+  },
+  {
+    name: 'Inventory Sync Bridge',
+    description: 'Integración entre datos de almacén y reporting financiero para trazabilidad de extremo a extremo.',
+    tags: ['SAP MM', 'Integrations', 'Data'],
+    link: '/projects#inventory-sync'
+  },
+  {
+    name: 'Pricing Governance Playbook',
+    description: 'Guía operativa para controlar cambios de pricing y evitar regresiones en procesos comerciales.',
+    tags: ['Pricing', 'Governance', 'S/4HANA'],
+    link: '/projects#pricing-governance'
+  }
+];
+---
+
+<BaseLayout
+  title="Fran Sánchez | Consultor SAP SD/MM y creador de Hourify360"
+  description="Consultoría SAP SD/MM con perfil técnico y enfoque en procesos robustos, datos fiables y producto digital."
+  pathname="/"
+>
+  <section class="section container">
+    <h1>Consultor SAP SD/MM + perfil técnico (ABAP / integraciones / datos)</h1>
+    <p>
+      Ayudo a equipos a conectar procesos, datos y sistemas para que O2C y logística funcionen sin fricción,
+      con decisiones basadas en trazabilidad real.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/projects">Ver proyectos</a>
+      <a class="btn" href="#contact">Contactar</a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2>SAP / Consultoría</h2>
+    <div class="card">
+      <ul>
+        <li>Dominio de O2C y logística: pricing, entregas y facturación con foco operativo.</li>
+        <li>Integración SD-MM-FI para flujos consistentes entre ventas, compras y finanzas.</li>
+        <li>Experiencia en S/4HANA, calidad del dato y trazabilidad para reporting confiable.</li>
+        <li>Resolución de incidencias complejas con análisis funcional y mentalidad técnica.</li>
+        <li>ABAP debugging, lectura de código e interfaces para acelerar diagnóstico y ejecución.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="featured">
+      <h2>Hourify360</h2>
+      <p>Gestión de packs de horas, reservas y clientes para profesionales que venden por sesiones.</p>
+      <ul>
+        <li>Control centralizado del saldo de horas y consumos por cliente.</li>
+        <li>Reservas más simples y menos fricción administrativa en el día a día.</li>
+        <li>Visión clara de rendimiento para tomar decisiones de capacidad y crecimiento.</li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://hourify360.com" target="_blank" rel="noreferrer">Ir a la landing</a>
+        <a class="btn" href="/projects#hourify360">Ver el caso / historia</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2>Proyectos</h2>
+    <div class="grid cards-3">
+      {projects.map((project) => (
+        <article class="card">
+          <h3>{project.name}</h3>
+          <p>{project.description}</p>
+          <div class="tag-list">
+            {project.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          <p><a href={project.link}>Ver más</a></p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2>Últimos artículos</h2>
+    <div class="grid">
+      {posts.map((post) => (
+        <article class="card">
+          <h3><a href={`/blog/${post.data.slug}`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+          <p class="meta">{post.data.date}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
